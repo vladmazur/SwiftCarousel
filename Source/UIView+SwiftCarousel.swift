@@ -20,12 +20,14 @@
 * THE SOFTWARE.
 */
 
-public enum ArchiveCopyingError: ErrorType {
-    case View
+import UIKit
+
+public enum ArchiveCopyingError: Error {
+    case view
 }
 
 public extension UIView {
-    private func prepareConstraintsForArchiving() {
+    fileprivate func prepareConstraintsForArchiving() {
         constraints.forEach { $0.shouldBeArchived = true }
         subviews.forEach { $0.prepareConstraintsForArchiving() }
     }
@@ -37,7 +39,7 @@ public extension UIView {
      */
     public func copyView() throws -> UIView {
         prepareConstraintsForArchiving()
-        guard let view = NSKeyedUnarchiver.unarchiveObjectWithData(NSKeyedArchiver.archivedDataWithRootObject(self)) as? UIView else { throw ArchiveCopyingError.View }
+        guard let view = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as? UIView else { throw ArchiveCopyingError.view }
         return view
     }
 }

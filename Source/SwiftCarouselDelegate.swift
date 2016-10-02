@@ -18,7 +18,9 @@
 * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 * THE SOFTWARE.
-*/
+ */
+
+import UIKit
 
 
 @objc public protocol SwiftCarouselDelegate {
@@ -34,7 +36,7 @@
      
      - returns: Return UIView that you customized (or not).
      */
-    optional func didSelectItem(item item: UIView, index: Int, tapped: Bool) -> UIView?
+    @objc optional func didSelectItem(item: UIView, index: Int, tapped: Bool) -> UIView?
     
     /**
      Delegate method that fires up when item has been deselected.
@@ -47,24 +49,24 @@
      
      - returns: Return UIView that you customized (or not).
      */
-    optional func didDeselectItem(item item: UIView, index: Int) -> UIView?
+    @objc optional func didDeselectItem(item: UIView, index: Int) -> UIView?
     
     /**
      Delegate method that fires up when Carousel has been scrolled.
      
      - parameter offset: New offset of the Carousel.
      */
-    optional func didScroll(toOffset offset: CGPoint)
+    @objc optional func didScroll(toOffset offset: CGPoint)
     /**
      Delegate method that fires up just before someone did dragging.
      
      - parameter offset: Current offset of the Carousel.
      */
-    optional func willBeginDragging(withOffset offset: CGPoint)
+    @objc optional func willBeginDragging(withOffset offset: CGPoint)
     /**
      Delegate method that fires up right after someone did end dragging.
      
      - parameter offset: New offset of the Carousel.
      */
-    optional func didEndDragging(withOffset offset: CGPoint)
+    @objc optional func didEndDragging(withOffset offset: CGPoint)
 }
