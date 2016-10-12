@@ -306,7 +306,9 @@ open class SwiftCarousel: UIView {
                 return
             }
             
-            self.scrollView.contentOffset.x = newOffsetX
+            if self.scrollView.contentOffset.x != newOffsetX {
+                self.scrollView.contentOffset.x = newOffsetX
+            }
             
             self.delegate?.didScroll?(toOffset: self.scrollView.contentOffset)
         }
